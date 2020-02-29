@@ -14,4 +14,12 @@ public class City {
     public long getPopulation() {
         return population;
     }
+    
+    public double dist(double x, double y) { //Used for checking if a newly created city is too close to an existing one
+        return Math.pow((y - ycoord) * (y - ycoord) + (x - xcoord) * (x - xcoord), 0.5);
+    }
+    
+    public String toString() {
+        return "Name: " + name + ", Population: " + population;
+    }
 }
