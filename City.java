@@ -20,6 +20,6 @@ public class City {
     }
     
     public String toString() {
-        return "Name: " + name + ", Population: " + population;
+        return "Name: " + name + ", Population: " + population + ", Position: " + (int) xcoord + "," + (int) ycoord;
     }
 }

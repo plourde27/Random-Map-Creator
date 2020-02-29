@@ -23,7 +23,7 @@ public class Map {
         }
         
         //Cities' populations must be greater than 100,000. Anything smaller is a Town
-        long pop = (int) Math.pow((int) (Math.random() * 1000), 2);
+        long pop = 100000 + (int) Math.pow((int) (Math.random() * 1000), 2);
         
         cities.add(new City(pop, x, y));
     }
