@@ -11,7 +11,7 @@ public class drawInterface extends JComponent {
     
     int tx = 0;
     int ty = 0;
-    int scl = 1;
+    double scl = 1.0;
     int ang = 0;
     
     public drawInterface() {
@@ -47,13 +47,13 @@ public class drawInterface extends JComponent {
         x = transform(ox, oy)[0];
         y = transform(ox, oy)[1];
         System.out.println(x + " " + y);
-        g.fillRect(x - w / 2, y - h / 2, w, h);
+        g.fillRect(x - w / 2, y - h / 2, (int) (w * scl), (int) (h * scl));
     }
     
     public void ellipse(int x, int y, int w, int h, Graphics g) {
         x = transform(x, y)[0];
         y = transform(x, y)[1];
-        g.fillOval(x - w / 2, y - h / 2, w, h);
+        g.fillOval(x - w / 2, y - h / 2, (int) (w * scl), (int) (h * scl));
     }
     
     public void fill(int r, int g, int b, Graphics gr) {
@@ -71,6 +71,10 @@ public class drawInterface extends JComponent {
     }
     
     public void line(int x1, int y1, int x2, int y2, Graphics g) {
+        x1 = transform(x1, y1)[0];
+        y1 = transform(x1, y1)[1];
+        x2 = transform(x2, y2)[0];
+        y2 = transform(x2, y2)[1];
         g.drawLine(x1, y1, x2, y2);
     }
 }
