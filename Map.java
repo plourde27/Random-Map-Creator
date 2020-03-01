@@ -1,7 +1,15 @@
 import java.util.*;
 import java.lang.Math.*;
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.lang.Math.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
+import java.lang.Math.*;
 
-public class Map {
+public class Map extends drawInterface {
     private ArrayList<City> cities; 
     final int DISTANCE_AWAY = 300;
     //X and Y coordinates will be on a large grid and range from 0 to 10000.
@@ -34,6 +42,11 @@ public class Map {
             m = Math.min(m, cities.get(i).dist(x, y));
         }
         return m;
+    }
+    
+    public void drawMap(Graphics g) {
+        fill(255, 0, 0, g);
+        rect(300, 300, 200, 200, g);
     }
     
     public String toString() {
