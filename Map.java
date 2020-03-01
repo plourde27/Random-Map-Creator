@@ -44,9 +44,17 @@ public class Map extends drawInterface {
         return m;
     }
     
-    public void drawMap(Graphics g) {
-        fill(255, 0, 0, g);
-        rect(300, 300, 200, 200, g);
+    public void drawMap(Graphics g, Mouse m, MouseWheel mw, Keyboard kb) {
+        for (int i = 0 ; i < 10000 ; i += 100) { 
+            line(i, 0, i, 10000, g);
+            line(0, i, 10000, i, g);
+        }
+        for (int i = 0 ; i < cities.size() ; i++) {
+            fill(0, 0, 0, g);
+            ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 10000), (int) (cities.get(i).population / 10000), g);
+        }
+        scl = (int) Math.pow(-1.1, mw.level);
+        System.out.println(scl);
     }
     
     public String toString() {

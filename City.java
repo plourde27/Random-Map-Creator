@@ -1,8 +1,8 @@
 public class City {
-    private CityName name;
-    private long population;
-    private double xcoord;
-    private double ycoord;
+    CityName name;
+    long population;
+    double xcoord;
+    double ycoord;
     
     public City(long pop, double x, double y) {
         name = new CityName();

@@ -14,7 +14,6 @@ public class Mouse implements MouseListener{
         if (!pressed) {
             clicked = true;
             pressed = true;
-            System.out.println(x + " " + y);
         }
         else {
             clicked = false;

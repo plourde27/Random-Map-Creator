@@ -15,6 +15,7 @@ public class drawInterface extends JComponent {
     int ang = 0;
     
     public drawInterface() {
+        
     }
     
     public void repaint() {
@@ -28,6 +29,9 @@ public class drawInterface extends JComponent {
     public int[] transform(int x, int y) {
         x = (int) ((x - tx) / ((double) Math.cos(ang * (Math.PI / 180))));
         y = y - ty;
+        if (x - tx == 0) {
+            x += 1;
+        }
         int oang = (int) (Math.atan(((y - ty) / (x - tx))) * (180.0 / Math.PI));
         oang += ang;
         int dist = (int) Math.sqrt((int) (x * x + y * y));
@@ -46,7 +50,7 @@ public class drawInterface extends JComponent {
         g.fillRect(x - w / 2, y - h / 2, w, h);
     }
     
-    public void ellpise(int x, int y, int w, int h, Graphics g) {
+    public void ellipse(int x, int y, int w, int h, Graphics g) {
         x = transform(x, y)[0];
         y = transform(x, y)[1];
         g.fillOval(x - w / 2, y - h / 2, w, h);
@@ -64,5 +68,9 @@ public class drawInterface extends JComponent {
         x = transform(x, y)[0];
         y = transform(x, y)[1];
         g.drawString(txt, x, y);
+    }
+    
+    public void line(int x1, int y1, int x2, int y2, Graphics g) {
+        g.drawLine(x1, y1, x2, y2);
     }
 }
