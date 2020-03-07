@@ -53,7 +53,7 @@ public class Map extends drawInterface {
             fill(0, 0, 0, g);
             ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 10000), (int) (cities.get(i).population / 10000), g);
         }
-        scl = Math.pow(1.1, -mw.level);
+        scl = Math.pow(1.01, -mw.level);
         System.out.println(scl);
     }
     

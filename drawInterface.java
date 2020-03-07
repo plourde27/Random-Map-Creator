@@ -27,16 +27,16 @@ public class drawInterface extends JComponent {
     }
     
     public int[] transform(int x, int y) {
-        x = (int) ((x - tx) / ((double) Math.cos(ang * (Math.PI / 180))));
+        x = x - tx;
         y = y - ty;
-        if (x - tx == 0) {
+        /*if (x - tx == 0) {
             x += 1;
         }
         int oang = (int) (Math.atan(((y - ty) / (x - tx))) * (180.0 / Math.PI));
         oang += ang;
-        int dist = (int) Math.sqrt((int) (x * x + y * y));
-        x = (int) (dist * scl * Math.cos(oang * (Math.PI / 180)));
-        y = (int) (dist * scl * Math.sin(oang * (Math.PI / 180)));
+        int dist = (int) Math.sqrt((int) (x * x + y * y));*/
+        x = (int) (x * scl);
+        y = (int) (y * scl);
         return new int[]{x, y};
     }
     
@@ -71,10 +71,15 @@ public class drawInterface extends JComponent {
     }
     
     public void line(int x1, int y1, int x2, int y2, Graphics g) {
-        x1 = transform(x1, y1)[0];
-        y1 = transform(x1, y1)[1];
-        x2 = transform(x2, y2)[0];
-        y2 = transform(x2, y2)[1];
+        int ox1 = x1;
+        int oy1 = y1;
+        int ox2 = x2;
+        int oy2 = y2;
+        x1 = transform(ox1, oy1)[0];
+        y1 = transform(ox1, oy1)[1];
+        x2 = transform(ox2, oy2)[0];
+        y2 = transform(ox2, oy2)[1];
         g.drawLine(x1, y1, x2, y2);
+        System.out.println(x1 + " " + ox1);
     }
 }
