@@ -12,6 +12,7 @@ import java.lang.Math.*;
 public class Map extends drawInterface {
     private ArrayList<City> cities; 
     final int DISTANCE_AWAY = 300;
+    int omw = 1;
     //X and Y coordinates will be on a large grid and range from 0 to 10000.
     
     public Map() {
@@ -45,6 +46,7 @@ public class Map extends drawInterface {
     }
     
     public void drawMap(Graphics g, Mouse m, MouseWheel mw, Keyboard kb) {
+        fill(200, 200, 200, g);
         for (int i = 0 ; i < 10000 ; i += 100) { 
             line(i, 0, i, 10000, g);
             line(0, i, 10000, i, g);
@@ -53,8 +55,14 @@ public class Map extends drawInterface {
             fill(0, 0, 0, g);
             ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 10000), (int) (cities.get(i).population / 10000), g);
         }
-        scl = Math.pow(1.01, -mw.level);
-        System.out.println(scl);
+        
+        if (mw.level > omw) {
+            scl *= 1.03;
+        }
+        else if (mw.level < omw) {
+            scl /= 1.03;
+        }
+        omw = mw.level;
     }
     
     public String toString() {

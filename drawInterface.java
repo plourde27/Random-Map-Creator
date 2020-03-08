@@ -13,6 +13,8 @@ public class drawInterface extends JComponent {
     int ty = 0;
     double scl = 1.0;
     int ang = 0;
+    int[] coords = new int[]{0, 0, 1080, 720};
+    
     
     public drawInterface() {
         
@@ -27,16 +29,8 @@ public class drawInterface extends JComponent {
     }
     
     public int[] transform(int x, int y) {
-        x = x - tx;
-        y = y - ty;
-        /*if (x - tx == 0) {
-            x += 1;
-        }
-        int oang = (int) (Math.atan(((y - ty) / (x - tx))) * (180.0 / Math.PI));
-        oang += ang;
-        int dist = (int) Math.sqrt((int) (x * x + y * y));*/
-        x = (int) (x * scl);
-        y = (int) (y * scl);
+        x = (int) ((x - coords[0]) * scl);
+        y = (int) ((y - coords[1]) * scl);
         return new int[]{x, y};
     }
     
@@ -53,7 +47,7 @@ public class drawInterface extends JComponent {
     public void ellipse(int x, int y, int w, int h, Graphics g) {
         x = transform(x, y)[0];
         y = transform(x, y)[1];
-        g.fillOval(x - w / 2, y - h / 2, (int) (w * scl), (int) (h * scl));
+        g.fillOval((int) (x - (w * scl) / 2), (int) (y - (h * scl) / 2), (int) (w * scl), (int) (h * scl));
     }
     
     public void fill(int r, int g, int b, Graphics gr) {
@@ -80,6 +74,5 @@ public class drawInterface extends JComponent {
         x2 = transform(ox2, oy2)[0];
         y2 = transform(ox2, oy2)[1];
         g.drawLine(x1, y1, x2, y2);
-        System.out.println(x1 + " " + ox1);
     }
 }

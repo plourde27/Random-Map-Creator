@@ -15,12 +15,16 @@ public class Display extends drawInterface {
     Keyboard kb;
     Map map;
     
+    int[] coords;
+    
     public Display(Game g, Mouse m, MouseWheel mmw, Keyboard k) {
+        super();
         game = g;
         mouse = m;
         mw = mmw;
         kb = k;
         map = new Map();
+        
     }
     
     public void draw(){
