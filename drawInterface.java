@@ -54,7 +54,7 @@ public class drawInterface extends JComponent {
         gr.setColor(new Color(r, g, b));
     }
     
-    public void fontSize(int sz, Graphics g) {
+    public void textSize(int sz, Graphics g) {
         g.setFont(new Font("Avenir", Font.PLAIN, sz));
     }
     

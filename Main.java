@@ -12,11 +12,13 @@ public class Main
         
         Mouse mouse = new Mouse();
         frame.addMouseListener(mouse);
+        MoveMouse movemouse = new MoveMouse();
+        frame.addMouseMotionListener(movemouse);
         Keyboard keyboard = new Keyboard();
         frame.addKeyListener(keyboard);
         MouseWheel mmw = new MouseWheel();
         frame.addMouseWheelListener(mmw);
-        Display screen = new Display(game, mouse, mmw, keyboard);
+        Display screen = new Display(game, mouse, movemouse, mmw, keyboard);
         frame.add(screen);
         
         frame.setBounds(0,0,1080,720);

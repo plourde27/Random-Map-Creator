@@ -45,7 +45,7 @@ public class Map extends drawInterface {
         return m;
     }
     
-    public void drawMap(Graphics g, Mouse m, MouseWheel mw, Keyboard kb) {
+    public void drawMap(Graphics g, Mouse m, MoveMouse mm, MouseWheel mw, Keyboard kb) {
         fill(200, 200, 200, g);
         for (int i = 0 ; i < 10000 ; i += 100) { 
             line(i, 0, i, 10000, g);
@@ -53,15 +53,26 @@ public class Map extends drawInterface {
         }
         for (int i = 0 ; i < cities.size() ; i++) {
             fill(0, 0, 0, g);
-            ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 10000), (int) (cities.get(i).population / 10000), g);
+            ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 3000), (int) (cities.get(i).population / 3000), g);
+            textSize(15, g);
+            text(cities.get(i).name.toString(), (int) cities.get(i).xcoord, (int) cities.get(i).ycoord, g);
         }
         
         if (mw.level > omw) {
+            
+            //System.out.println(coords[0] + " " + coords[1] + " " + m.x + " " + scl);
             scl *= 1.03;
+            coords[0] += mm.x * 0.03 * (1.0 / scl);
+            coords[1] += mm.y * 0.03 * (1.0 / scl);
         }
         else if (mw.level < omw) {
-            scl /= 1.03;
+            
+            scl *= 0.97;
+            coords[0] -= mm.x * 0.03 * (1.0 / scl);
+            coords[1] -= mm.y * 0.03 * (1.0 / scl);
         }
+        System.out.println(coords[0] + (int) ((1080.0 / scl)));
+        //System.out.println(coords[0] + " " + coords[1]);
         omw = mw.level;
     }
     
