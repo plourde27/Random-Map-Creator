@@ -13,6 +13,7 @@ public class Map extends drawInterface {
     private ArrayList<City> cities; 
     final int DISTANCE_AWAY = 300;
     int omw = 1;
+    ArrayList<Road> roads = new ArrayList<Road>();
     //X and Y coordinates will be on a large grid and range from 0 to 10000.
     
     public Map() {
@@ -21,6 +22,7 @@ public class Map extends drawInterface {
         for (int i = 0 ; i < cityCount ; i++) {
             addCity();
         }
+        roads.add(new Road(27, new int[][]{{0, 0}, {500, 500}}));
     }
     
     public void addCity() {
@@ -47,10 +49,10 @@ public class Map extends drawInterface {
     
     public void drawMap(Graphics g, Mouse m, MoveMouse mm, MouseWheel mw, Keyboard kb) {
         fill(200, 200, 200, g);
-        for (int i = 0 ; i < 10000 ; i += 100) { 
-            line(i, 0, i, 10000, g);
-            line(0, i, 10000, i, g);
-        }
+        //for (int i = 0 ; i < 10000 ; i += 100) { 
+            //line(i, 0, i, 10000, g);
+            //line(0, i, 10000, i, g);
+        //}
         for (int i = 0 ; i < cities.size() ; i++) {
             fill(0, 0, 0, g);
             ellipse((int) cities.get(i).xcoord, (int) cities.get(i).ycoord, (int) (cities.get(i).population / 3000), (int) (cities.get(i).population / 3000), g);
@@ -74,6 +76,8 @@ public class Map extends drawInterface {
         System.out.println(coords[0] + (int) ((1080.0 / scl)));
         //System.out.println(coords[0] + " " + coords[1]);
         omw = mw.level;
+        
+        roads.get(0).drawRoad(g);
     }
     
     public String toString() {

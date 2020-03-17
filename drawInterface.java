@@ -14,6 +14,8 @@ public class drawInterface extends JComponent {
     double scl = 1.0;
     int ang = 0;
     int[] coords = new int[]{0, 0, 1080, 720};
+    ArrayList<Integer> xs = new ArrayList<Integer>();
+    ArrayList<Integer> ys = new ArrayList<Integer>();
     
     
     public drawInterface() {
@@ -74,5 +76,23 @@ public class drawInterface extends JComponent {
         x2 = transform(ox2, oy2)[0];
         y2 = transform(ox2, oy2)[1];
         g.drawLine(x1, y1, x2, y2);
+    }
+    
+    public void vertex(int x, int y) {
+        xs.add(transform(x, y)[0]);
+        ys.add(transform(x, y)[1]);
+        System.out.println(x + " " + transform(x, y)[0]);
+    }
+    
+    public void endShape(Graphics g) {
+        int[] x = new int[xs.size()];
+        int[] y = new int[ys.size()];
+        for (int i = 0 ; i < xs.size() ; i++) {
+            x[i] = xs.get(i);
+            y[i] = ys.get(i);
+        }
+        g.fillPolygon(new Polygon(x, y, xs.size()));
+        xs = new ArrayList<Integer>();
+        ys = new ArrayList<Integer>();
     }
 }
